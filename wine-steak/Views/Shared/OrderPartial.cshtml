@@ -1,0 +1,180 @@
+﻿@model IEnumerable<wine_steak.Models.Food>
+<style>
+</style>
+<div class="col-md-4 col-xs-12" style="margin-top:0px;background-color: white;">
+    <div class="row" style="padding: 20px;width: 100%;">
+        <div class="col-lg-12 col-md-12">
+            <div class="Order">
+                <div class="top">
+                    <h4>Current Order</h4>
+
+                </div>
+                <div class="list-order col-lg-12 col-sm-12" style="height: 300px;overflow-y: overlay;">
+                    @foreach (var item in Model)
+                    {
+                        <div class="item">
+                            <div class="item-img">
+                                <img src="~/Content/img/ratio/@item.Anh" alt="">
+                            </div>
+                            <div class="item-content">
+                                <h4>@item.TenMon</h4>
+                                <p class="price">@item.GiaTien VNĐ</p>
+                                <div class="InDe">
+                                    @using (Html.BeginForm("Increase", "SelfRestaurant", FormMethod.Post, new { @class = "my-form" }))
+                                    {
+                                        <div>
+                                            @Html.Hidden("id", item.id)
+                                            <button type="submit" class="In"><i class="fa-solid fa-plus"></i></button>
+                                        </div>
+                                    }
+                                    <h5>@item.amount</h5>
+                                    @using (Html.BeginForm("Decrease", "SelfRestaurant", FormMethod.Post, new { @class = "my-form" }))
+                                    {
+                                        <div>
+                                            @Html.Hidden("id1", item.id)
+                                            <button type="submit" class="De"><i class="fa-solid fa-minus"></i></button>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+                <div class="total-price">
+                    <div class="discount">
+                        <table>
+                            <tr>
+                                <td style="font-size: 14px;color:#CCCCCC">SubTotal</td>
+                                <td style="float: right;">@string.Format("{0:#,##0,0}", @ViewBag.Total) VNĐ</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="total">
+                        <table>
+                            <tr>
+                                <td style="font-size: 20px;">Total</td>
+                                <td style="float: right;font-size: 20px;">@string.Format("{0:#,##0,0}", @ViewBag.Total) VNĐ</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="checkout" id="checkout">
+
+                    <div id="paymentButton" name="paymentButton" onclick="displaySuccessModal()" style="margin: 0px auto;">
+                        <button>Continue to Payment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    //Khi click +
+    $(document).ready(function () {
+    $('.In').on('click', function (e) {
+        e.preventDefault(); // Ngăn chặn sự kiện mặc định của việc gửi form
+        var itemId = $(this).closest('.item').find('input[name="id"]').val();
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("Increase", "SelfRestaurant")',
+            data: { id: itemId },
+            success: function (data) {
+                if (data.code == 100) {
+                    location.reload();
+                }  if(data.code == 200) {
+                    alert(data.msg);
+                }
+                if (data.code == 500) {
+                    alert(data.msg);
+                }
+            },
+        });
+    });
+});
+
+
+//khi click -
+$(document).ready(function () {
+    $('.De').on('click', function (e) {
+        e.preventDefault(); // Ngăn chặn sự kiện mặc định của việc gửi form
+        var itemId = $(this).closest('.item').find('input[name="id"]').val();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("Decrease", "SelfRestaurant")',
+            data: { id: itemId },
+            success: function (data) {
+                if (data.code == 200) {
+                    location.reload();
+                }
+                if (data.code == 500) {
+                }
+            },
+        });
+    });
+});
+    //click Xác nhận
+    $("#confirm").click(function () {
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("PayMen", "SelfRestaurant")",
+            data: {},
+            dataType: "json",
+            success: function (data) {
+                if (data.code === 200) {
+                    alert(data.msg);
+                    $('.modal').hide();
+                } else {
+                    alert(data.msg);
+                     $('.modal').hide();
+                }
+            },
+            error: function () {
+                alert("Lỗi AJAX. Vui lòng thử lại sau.");
+            }
+        });
+    });
+
+
+
+
+
+    //Khi click Continue to payment
+    document.addEventListener('DOMContentLoaded', function () {
+        const payment = document.querySelector('#paymentButton');
+        const modal = document.getElementById('myModal');
+        const closeModalButtons = document.querySelectorAll('#closeModalButton');
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        payment.addEventListener('click', openModal);
+        function openModal() {
+                modal.style.display = 'block';
+                // Đặt lại nội dung modal khi mở
+                $('.modal-title').text("Thông báo");
+                $('#password-box').hide();
+                $('#username-box').hide();
+                $('#login').hide();
+                $('#confirm').show();
+                $('#closeModalButton').hide();
+                $('#title-confirm').show()
+                $('#submit').hide();
+                $('#masoban-box').hide();
+        }
+        closeModalButtons.forEach((button) => {
+            button.addEventListener('click', closeModal);
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    });
+</script>

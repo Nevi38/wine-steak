@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout_Cashier.cshtml";
+}
+
+<div id="wrap-form">
+        @using (Html.BeginForm("Index", "Cashier", FormMethod.Post, new { @id = "form" }))
+        {
+            <p class="title mb-3">1. Please enter table id</p>
+            <div>
+                <p>@ViewBag.message</p>
+                <input required id="input" name="masoban" type="number" placeholder="table-033" />
+                <button id="button">Acept</button>
+            </div>
+        }
+</div>
+
+<script>
+    const li = document.getElementById('js-li-payment')
+    const button = document.getElementById('button')
+    const input = document.getElementById('input')
+
+    li.classList.add('btn-active')
+</script>
+@Styles.Render("~/Content/css/cashier.css")

@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SELF RESTAURANT</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+    <nav>
+        <img src="~/Content/img/logo.png" />
+
+        <ul class="list-group-horizontal">
+            <li>
+                @Html.ActionLink("Đặt món", "Index", "SelfRestaurant", "", new { @class = "active" })
+            </li>
+        </ul>
+    </nav>
+
+    <div id="content">
+        @RenderBody()
+    </div>
+
+    <footer>
+        <div>
+            <div class="list">
+                <h3 class="list__heading">ABOUT US</h3>
+                <ul>
+                    <li>
+                        <a href="#">Chiefs</a>
+                    </li>
+                    <li>
+                        <a href="#">Staffs</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="list">
+                <h3 class="list__heading">SPACE</h3>
+                <ul>
+                    <li>
+                        <a href="#">Rooms</a>
+                    </li>
+                    <li>
+                        <a href="#">Vip deluxe</a>
+                    </li>
+                    <li>
+                        <a href="#">Entertainment</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="list">
+                <h3 class="list__heading">SELF RESTAURANT</h3>
+                <ul>
+                    <li>Address: District 3, Ho Chi Minh City</li>
+                    <li>Located: 3th Floor Maihouse Saigon</li>
+                    <li>
+                        <b>Tel: 0123.456.789</b>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="list">
+                <h3 class="list__heading">TIME OPEN</h3>
+                <ul>
+                    <li>MONDAY - THURSDAY</li>
+                    <li>
+                        <b>6:00 TO 22:00</b>
+                    </li>
+                    <br />
+                    <li>FRIDAY - SUNDAY</li>
+                    <li>
+                        <b>5:00 TO 2:00</b>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer__logo">
+                <img src="~/Content/img/logo-footer.png" />
+            </div>
+
+            <div class="dotted"></div>
+
+            <div class="list text-align-right">
+                <h3 class="list__heading">BOOKING</h3>
+                <ul>
+                    <li>
+                        <a href="#">Shopee</a>
+                    </li>
+                    <li>
+                        <a href="#">Grab</a>
+                    </li>
+                    <li>
+                        <a href="#">Lazada</a>
+                    </li>
+                    <li>
+                        <a href="#">Bee</a>
+                    </li>
+                    <li>
+                        <a href="#">Amazone</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer__author">
+            <p class="footer__author-sub">&#64; 2023 - NEVI | Quoc Thang Founder</p>
+            <p class="footer__author-sub">Do not copy in any form / Ne copiez sous aucune forme</p>
+        </div>
+    </footer>
+    @Styles.Render("~/Content/css/general.css")
+    @Styles.Render("~/Content/css/index.css")
+
+    <style>
+        .active {
+            padding: 12px;
+            background-color: #FAD02C;
+            color: black;
+        }
+
+        nav a:hover {
+            color: black;
+            opacity: 0.9;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,116 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Varela Round';
+}
+
+.list-table {
+    align-self: center;
+}
+
+.list-item {
+    display: inline-flex;
+    margin: 25px 20px;
+    width: 45%;
+}
+
+.list-item-image {
+    margin-right: 20px;
+}
+
+.list-item-name {
+    font-size: 30px;
+}
+
+.list-item-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.action-link {
+    display: flex;
+    margin-top: 3px;
+}
+
+    .action-link a {
+        text-decoration: none;
+        color: black;
+    }
+
+.list-item-bottom {
+    margin-top: auto;
+    margin-bottom: 5px;
+}
+
+.list-item-desc {
+    width: 100%;
+    font-size: 14px;
+}
+
+.add-button {
+    align-self: center;
+    width: fit-content;
+    margin: 6px 2px;
+    background-color: green;
+    border-radius: 3%;
+    padding: 5px;
+    transition: 0.1s ease-out;
+}
+
+    .add-button:hover {
+        background-color: darkgreen;
+    }
+
+        .add-button:hover a {
+        }
+
+    .add-button a {
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 20px;
+        color: white;
+    }
+
+.list-text {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 50px;
+}
+
+.action-delete {
+    background-color: #cd3838;
+    margin-right: 10px;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 3%;
+}
+
+.action-update {
+    background-color: #edd652;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 3%;
+}
+
+.action-delete:hover {
+    background-color: darkred;
+}
+
+    .action-delete:hover a {
+        color: white;
+    }
+
+.action-update:hover {
+    background-color: #6e6e2e;
+}
+
+    .action-update:hover a {
+        color: white;
+    }
+
+.link-index a {
+    color: black;
+    text-decoration: none;
+}

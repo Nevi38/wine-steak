@@ -1,0 +1,261 @@
+﻿<style>
+    .my-form {
+        display: inline-block;
+    }
+
+    .InDe {
+        top: 50%;
+    }
+
+        .InDe h5 {
+            display: inline-block;
+            width: 26px;
+            margin: 2px;
+        }
+
+    .checkout button {
+        background: none;
+        border: none;
+        color: white;
+        font-weight: bold;
+    }
+    /* Thêm CSS để tùy chỉnh giao diện của modal */
+    .modal-header {
+        border: none; /* Loại bỏ border của header */
+    }
+
+    .close {
+        outline: none; /* Loại bỏ đường viền khi được focus */
+        background-color: transparent; /* Loại bỏ nền của nút close */
+        border: none; /* Loại bỏ border của nút close */
+        color: #000; /* Màu của biểu tượng close */
+        font-size: 20px;
+    }
+
+    .modal-footer button.btn-primary {
+        background-color: #FF6600; /* Màu nền của nút Save */
+        color: #fff; /* Màu chữ của nút Save */
+    }
+
+    .modal-content {
+        text-align: center;
+        background: white;
+    }
+
+    .modal-header {
+        border: none;
+    }
+
+    .modal-body {
+        text-align: left;
+    }
+
+    .modal-footer {
+        justify-content: center;
+    }
+
+    .close {
+        outline: none;
+        background-color: transparent;
+        border: none;
+        color: #000;
+        font-size: 20px;
+    }
+
+    .modal-footer button.btn-primary {
+        color: #fff;
+    }
+
+    .form-group {
+        display: inline-block;
+        margin-left: 126px;
+    }
+
+    .modal-title {
+        font-weight: bold;
+        margin: 0px auto;
+        font-size: 20px;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+</style>
+
+
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item nav-profile">
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <span class="menu-title"></span>
+                <i class="mdi mdi-home menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <span class="menu-title"></span>
+                <i class="mdi mdi-table-large menu-icon"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const table = document.querySelector('.mdi-table-large');
+        const modal = document.getElementById('myModal');
+        const closeModalButtons = document.querySelectorAll('#closeModalButton');
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+        //Khi click icon table
+        table.addEventListener('click', openModal);
+        function openModal() {
+            modal.style.display = 'block';
+            // Đặt lại nội dung modal khi mở
+
+            $('.modal-title').text("Chức năng này yêu cầu tài khoản của quản lý");
+            $('#password-box').show();
+            $('#username-box').show();
+            $('#title-confirm').hide();
+            $('#login').show();
+            $('#submit').hide();
+            $('#masoban-box').hide();
+            $('#confirm').hide();
+
+        }
+        closeModalButtons.forEach((button) => {
+            button.addEventListener('click', closeModal);
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+        });
+
+
+
+              $(document).ready(function () {
+    $("#login").click(function () {
+        var username = $("#username").val();
+        var password = $("#password").val();
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("CheckAccount", "SelfRestaurant")",
+            data: { username: username, password: password },
+            dataType: "json",
+            success: function (data) {
+                if (data.code === 200) {
+                    $('.modal-title').text("Nhập mã bàn");
+                    $('#username-box').hide();
+                    $('#password-box').hide();
+                    $('#username').val('');
+                    $('#password').val('');
+                    $('#login').hide();
+                    $('#submit').show();
+                    $('#masoban-box').show();
+                    alert(data.msg);
+                } else {
+                    alert(data.msg);
+                }
+            },
+            error: function () {
+                alert("Lỗi AJAX. Vui lòng thử lại sau.");
+            }
+        });
+    });
+
+    // Đóng modal khi click nút Close
+    $("#closeModalButton").click(function () {
+        $("#myModal").modal("hide");
+    });
+});
+
+    $(document).ready(function () {
+        $("#submit").click(function () {
+            // Lấy nội dung từ input có id là "masoban"
+            var maSoBan = $("#masoban").val();
+
+            // Kiểm tra xem maSoBan có phải là số nguyên không
+            if (isInt(maSoBan)) {
+                // Thực hiện Ajax để kiểm tra trạng thái thanh toán của hóa đơn với MaSoBan
+                $.ajax({
+                    type: "POST",
+                    url: "/SelfRestaurant/CheckPayMent", // Thay đổi đường dẫn tới action kiểm tra thanh toán
+                    data: { maSoBan: maSoBan }, // Truyền maSoBan vào data
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.code == 200) {
+                            var expirationDate = new Date(new Date().getTime() + 365 * 24 * 60 * 60 * 1000).toUTCString();
+                            // Lưu mã số bàn vào Cookie với thời gian sống lâu dài
+                            document.cookie = "MaSoBan=" + maSoBan + "; expires=" + expirationDate + "; path=/";
+                            alert("Mã số bàn đã được lưu vào Cookie. Giá trị là: " + maSoBan);
+                            $('.modal').hide();
+                        } else {
+                            alert(data.msg);
+                            $('.modal').hide();
+                        }
+                    },
+                    error: function () {
+                        alert("Lỗi Ajax. Vui lòng thử lại sau.");
+                    }
+                });
+            } else {
+                alert("Mã số bàn phải là số nguyên.");
+            }
+        });
+
+        // Hàm kiểm tra số nguyên
+        function isInt(value) {
+            return !isNaN(value) && (function (x) { return (x | 0) === x; })(parseFloat(value))
+        }
+    });
+
+</script>
+<!-- Modal -->
+<div class="modal" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Chức năng này yêu cầu tài khoản của quản lý</h5>
+                <button type="button" class="close" id="closeModalButton" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="title-confirm" style="text-align:center;font-size:16px">Xác nhận gọi món</p>
+                <form style="width:100%" class="form">
+                    <div class="form-group">
+                        <div id="username-box">
+                            <span>Username</span>
+                            <input type="text" class="form-control" id="username">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div id="masoban-box">
+                            <span>Mã số bàn</span>
+                            <input type="text" class="form-control" id="masoban">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div id="password-box">
+                            <span>Password</span>
+                            <input type="password" class="form-control" id="password">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="closeModalButton">Close</button>
+                <button type="button" class="btn btn-primary" id="login" style="background-color: #FF6600;">Login</button>
+                <button type="button" class="btn btn-primary submit" id="submit" style="background-color: #FF6600;">OK</button>
+                <button type="button" class="btn btn-primary " id="confirm" style="background-color: #FF6600;">Xác nhận</button>
+            </div>
+
+        </div>
+    </div>
+</div>

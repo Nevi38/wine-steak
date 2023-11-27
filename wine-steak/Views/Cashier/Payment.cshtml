@@ -1,0 +1,119 @@
+﻿@model List<wine_steak.Models.MonAnInfo>
+
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout_Cashier_01.cshtml";
+}
+
+<div id="wrap-form-payment">
+    @Html.ActionLink("<< Quay trở lại", "Index", "Cashier", new { @class = "previousButton" })
+
+    <div id="wrap-bill">
+        <div class="list-foods">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <div class="food justify-content-between">
+                    <div>
+                        <img src="~/Content/img/@Model[i].Anh" />
+                        <div>
+                            <div>
+                                <b class="name-food">@Model[i].TenMon</b>
+                                <p class="flavor-food">Flavour: Salt</p>
+                            </div>
+                            <b class="money">@Model[i].GiaTien EUR</b>
+                        </div>
+                    </div>
+
+                    <b class="soluongd d-flex align-items-end">x @Model[i].Amount</b>
+                </div>
+            }
+
+        </div>
+
+        <div class="dotted"></div>
+
+        <div id="bill">
+            <h1 class="text-center">BILL DETAILS</h1>
+            <div>
+                <div id="wrap-form">
+                    <div>
+                        <p class="key">Mã số bàn:</p>
+                        <p class="value">@ViewBag.masoban</p>
+                    </div>
+                    <div>
+                        <p class="key">Thu ngân:</p>
+                        <p class="value">@ViewBag.user</p>
+                    </div>
+                    <div>
+                        <p class="key">Số lượng:</p>
+                        <p class="value">@ViewBag.soluong</p>
+                    </div>
+                    <div>
+                        <p class="key">Điểm tích lũy:</p>
+                        <p class="value">@ViewBag.diemtichluy</p>
+                    </div>
+                    <div>
+                        <p class="key">VAT:</p>
+                        <p class="value">@ViewBag.VAT %</p>
+                    </div>
+                    <div>
+                        <p class="main-key">Tổng cộng:</p>
+                        <p class="main-value">@ViewBag.ThanhTien EUR</p>
+                    </div>
+                    <div>
+                        <p class="main-key">Tiền thừa:</p>
+                        <p class="main-value">@ViewBag.tienthua EUR</p>
+                    </div>
+                    <div class="flex-column">
+                        <p>Tiền mặt: <input checked id="isMoney" type="radio" name="typePayment" /></p>
+                        <p>VNPAY: <input id="isVnPay" type="radio" name="typePayment" /></p>
+                    </div>
+                    <div>
+                        <p id="message"></p>
+                    </div>
+                </div>
+
+                @using (Html.BeginForm("Payment", "Cashier", new { @sotienthanhtoan = ViewBag.ThanhTien, @masoban = ViewBag.masoban }, FormMethod.Post, new { @id = "form" }))
+                {
+                    <div class="d-flex w-100">
+                        <input id="money" name="money" required class="w-100" type="number" placeholder="Nhập số tiền thanh toán" />
+                        <button id="paymentButton" type="submit">Payment</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const li = document.getElementById('js-li-payment')
+    li.classList.add('btn-active')
+
+    // Kiểm tra số tiền thanh toán
+    const optionVnpay = document.getElementById('isVnPay')
+    const optionMoney = document.getElementById('isMoney')
+    const form = document.getElementById('form')
+    const money = document.getElementById('money')
+    const message = document.getElementById('message')
+    let thanhtien = parseInt("@ViewBag.thanhtien")
+
+    optionMoney.addEventListener('change', function () {
+        money.disabled = false
+    })
+
+    optionVnpay.addEventListener('change', function () {
+        money.disabled = true
+    })
+
+    form.addEventListener('submit', function (event) {
+        if ((money.value < thanhtien && optionMoney.checked)) {
+                message.innerHTML = "Số tiền không hợp lệ, vui lòng kiểm tra lại"
+                event.preventDefault();
+            } else if (optionVnpay.checked) {
+                // Redirect to page payment vnpay
+                event.preventDefault();
+                window.location.href = `../Payment/Vnpay?money=${thanhtien}`
+            }
+    })
+</script>
+
+@Styles.Render("~/Content/css/cashier.css")

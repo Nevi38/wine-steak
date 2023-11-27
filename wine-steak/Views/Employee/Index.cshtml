@@ -1,0 +1,54 @@
+﻿@model wine_steak.Models.UserViewModel
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    <link href='https://fonts.googleapis.com/css?family=Varela Round' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="~/Content/css/chef.css" />
+    <div class="list-title">
+        <div class="list-name">Món Cần Phục Vụ</div>
+        <div class="list-more"><a>Xem Tất Cả</a></div>
+    </div>
+    <div class="row">
+        @if (Model.hoaDon.Count() == 0)
+        {
+                <div class="confirm-notification"><div>Không Có Món Ăn Cần Phục Vụ</div></div>
+        }
+        else
+        {
+            for (int i = 0; i < Model.hoaDon.Count(); i++)
+            {
+                @Html.Partial("Confirm", new wine_steak.Models.UserViewModel2(Model.hoaDon[i], ((wine_steak.Controllers.EmployeeController)this.ViewContext.Controller).getListFood(Model.hoaDon[i])))
+            }
+        }
+    </div>
+    <div class="list-title">
+        <div class="list-name">Danh Sách Món</div>
+        <div class="list-more"><a href="@Url.Action("List", "Employee")">Xem Tất Cả</a></div>
+    </div>
+    <div class="row" style="display: flex; justify-content: center; flex-wrap: wrap">
+        @foreach (var item in Model.mon)
+        {
+            <div class="food">
+                <img class="food-img" src="~/Content/img/ratio/@item.Anh" />
+                <div class="food-name"> @item.TenMon </div>
+                <div class="food-info-wrapper">
+                    <hr class="separator">
+                    <div class="food-info">
+                        <div class="info-left">@item.Calories calories</div>
+                        <div class="info-dot"></div>
+                        <div class="info-right">@item.SoLuongMon phần</div>
+                    </div>
+                    <hr class="separator">
+                    <div class="food-footer">
+                        <div class="food-money">@item.GiaTien VNĐ</div>
+                        <div class="food-button">
+                            <div>+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+

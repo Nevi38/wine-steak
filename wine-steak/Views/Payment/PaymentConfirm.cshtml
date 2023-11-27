@@ -1,0 +1,80 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Payment Confirm</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+        }
+
+        #wrap__message {
+            height: 100%;
+            background-color: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            color: black;
+            background-color: white;
+            padding: 15px;
+            cursor: pointer;
+        }
+
+            .btn:hover {
+                opacity: 0.8;
+            }
+        .mt-15 {
+            margin-top: 15px;
+        }
+
+        .box-center {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap__message">
+        <div id="element">
+            <h2 class="mt-15">@ViewBag.message</h2>
+            <div class="box-center mt-15">
+                @Html.ActionLink("Quay về", "Index", "Cashier", "", new { @class = "btn" })
+            </div>
+            <b class="mt-15" style="text-align: center; margin-top: 15px;" id="message"></b>
+        </div>
+    </div>
+
+    <script>
+         const message = document.getElementById('message')
+         let timeDuration = 12
+
+         message.innerText = `Bạn sẽ có ${timeDuration} seconds để quay về`
+
+         let id = setInterval(function () {
+             message.innerText = `Bạn còn ${--timeDuration} seconds để quay về`
+
+             if (timeDuration == 0) {
+                 clearInterval(id)
+                 window.location.href = '@Url.Action("Index", "Cashier")';
+             }
+         }, 1000)
+    </script>
+</body>
+</html>

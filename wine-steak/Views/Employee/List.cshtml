@@ -1,0 +1,46 @@
+﻿@model IEnumerable<wine_steak.Models.MonAn>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href='https://fonts.googleapis.com/css?family=Varela Round' rel='stylesheet'>
+<link rel="stylesheet" type="text/css" href="~/Content/css/list.css"/>
+<div class="link-index">
+    @Html.ActionLink("❮❮ Về Trang Chủ", "Index")
+</div>
+<div class="list-text" style="text-align: center;">Danh Sách Món Ăn</div>
+<hr style=" border-color: lightgray; margin: 8px 0px 30px 0px;"/>
+<div style="width: 100%; display: flex; justify-content:space-around">
+    <div class="add-button">
+        @Html.ActionLink("Thêm Món", "Create")
+    </div>
+</div>
+<div class="list-table">
+@foreach (var item in Model) 
+{
+    <div class="list-item">
+        <div class="list-item-image">
+            <img src="~/Content/img/ratio/@item.Anh" style="width:175px; height:175px;"/>
+        </div>
+        <div class="list-item-info">
+            <div class="list-item-name">
+                @Html.DisplayFor(modelItem => item.TenMon)
+            </div>
+            <div class="list-item-desc" style="text-align: justify">
+                @Html.DisplayFor(modelItem => item.MoTa)
+            </div>
+            <div class="list-item-bottom">
+                <div>
+                    @Html.DisplayFor(modelItem => item.GiaTien) VNĐ  |  @Html.DisplayFor(modelItem => item.Calories) calories  |  @Html.DisplayFor(modelItem => item.SoLuongMon) phần
+                </div>
+                <div class="action-link">
+                        <div class="action-delete"> @Html.ActionLink("Xóa", "Delete", new { id = item.id }) </div>
+                        <div class="action-update"> @Html.ActionLink("Sửa", "Edit", new { id = item.id }) </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+</div>

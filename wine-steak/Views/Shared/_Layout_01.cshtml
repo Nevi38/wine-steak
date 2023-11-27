@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SELF RESTAURANT</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav>
+        <img src="~/Content/img/logo.png" />
+
+        <ul class="list-group-horizontal">
+            <li>
+                <a href="#carousel">Home</a>
+            </li>
+            <li>
+                <a href="#cooking">Cooking</a>
+            </li>
+            <li>
+                @Html.ActionLink("About Us", "Index", "AboutUs")
+            </li>
+        </ul>
+    </nav>
+
+    <div id="content">
+        @RenderBody()
+    </div>
+    @Styles.Render("~/Content/css/general.css")
+    @Styles.Render("~/Content/css/index.css")
+</body>
+</html>

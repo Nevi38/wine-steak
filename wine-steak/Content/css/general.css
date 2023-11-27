@@ -1,0 +1,144 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Helvetica, sans-serif;
+}
+
+:root {
+    --eco-header: 90px;
+    --eco-color-primary: #3aa30e;
+    --eco-footer: 370px;
+}
+
+body {
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.list-group-horizontal {
+    display: flex;
+    margin-bottom: 0;
+}
+
+    .list-group-horizontal li:not(:nth-child(1)) {
+        margin-left: 15px;
+    }
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 50px;
+    padding-right: 50px;
+    /* background-color: #59ff148c;*/
+    background-color: black;
+    color: white;
+    /* box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--eco-header);
+    z-index: 99999999;
+}
+
+    nav a {
+        font-size: 18px;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 5px;
+    }
+
+        nav a:hover {
+            color: inherit;
+            opacity: 0.7; 
+        }
+
+        nav img {
+            width: 100px;
+            height: 100%;
+            object-fit: cover;
+        }
+
+#content {
+    margin-top: var(--eco-header);
+}
+
+footer {
+    font-family: Helvetica, sans-serif;
+    height: var(--eco-footer);
+    background-color: black;
+    color: white;
+    padding: 50px 90px;
+}
+
+    footer a:hover {
+        opacity: 0.7;
+    }
+
+    footer > div:not(:last-child) {
+        display: flex;
+        height: 80%;
+    }
+
+    footer .dotted {
+        height: 100%;
+        border-right: 2px dashed white;
+        margin-left: 48px;
+        margin-right: 48px;
+    }
+
+.footer__logo {
+    width: 140px;
+}
+
+.footer__logo img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.list:not(:last-child) {
+    margin-right: 80px;
+}
+
+    .list ul {
+        padding-left: 0;
+        margin-top: 18px;
+    }
+
+    .list li {
+        margin-top: 5px;
+        white-space: nowrap;
+    }
+
+    .list a {
+        color: #E6E6E6;
+    }
+
+.list__heading {
+    font-size: 22px;
+    font-weight: bold;
+    text-wrap: nowrap;
+}
+
+.text-align-right {
+    text-align: right;
+}
+
+.footer__author {
+    color: #E6E6E6;
+}
+
+.footer__author-sub {
+    margin-bottom: 6px;
+}

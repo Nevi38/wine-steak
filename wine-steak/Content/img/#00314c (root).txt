@@ -1,0 +1,3 @@
+#00314c (root)
+#005a8b (custome-1)
+rgb(0 90 139 / 84%) (custome-2)

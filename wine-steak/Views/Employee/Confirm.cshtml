@@ -1,0 +1,41 @@
+﻿@model wine_steak.Models.UserViewModel2
+
+<link rel="stylesheet" type="text/css" href="~/Content/css/confirm.css"/>
+<div class="confirm-container">
+    <div class="index-section">
+        <div class="index-text">Mã Số Bàn</div>
+        <hr class="index-separator" />
+        <div class="index-number">@Model.hoadon.MaSoBan</div>
+    </div>
+    <div class="food-list-section">
+        <div class="food-list">
+            @foreach (var mon in Model.mon)
+            {
+                <div class="food-list-food">
+                    <div class="confirm-food-img"><img src="~/Content/img/ratio/@mon.anh" /></div>
+                    <div class="confirm-food-name">@mon.ten</div>
+                    <div class="confirm-food-amount">x @mon.amount</div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="confirm-button">
+        @using (Html.BeginForm("Confirm", "Employee", new { id = Model.hoadon.id }, FormMethod.Post))
+        {
+            <div class="form-group">
+                <div class="confirm-button-section">
+                    <img src="~/Content/img/tick.png" class="confirm-button-image" onclick="f()" />
+                    <p onclick="f()">Xác Nhận Hoàn Tất</p>
+                    <input type="submit" value="Xác Nhận Hoàn Tất" id="confirmInput" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    function f() {
+        document.getElementById("confirmInput").click();
+    }
+</script>
+

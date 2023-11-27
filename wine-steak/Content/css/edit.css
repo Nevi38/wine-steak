@@ -1,0 +1,118 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Varela Round';
+}
+
+.list-table {
+    align-self: center;
+}
+
+.list-item {
+    display: flex;
+    margin: 25px 20px;
+}
+
+.list-item-image {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid green;
+}
+
+    .list-item-image img {
+        width: 296px;
+        height: 298px;
+    }
+
+.list-item-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.list-item-desc {
+    margin-top: 10px;
+    width: 100%;
+    font-size: 14px;
+    display: flex;
+}
+
+.list-text {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 50px;
+}
+
+
+.list-item-name input {
+    padding: 2px;
+    font-size: 30px;
+    width: 100%;
+}
+
+.list-item-desc textarea {
+    padding: 2px;
+    font-size: 18px;
+    resize: none;
+    width: 100%;
+    height: 200px;
+}
+
+.list-item-money {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+    .list-item-money input {
+        padding: 2px;
+        font-size: 20px;
+        margin-right: 10px;
+        width: 33%;
+    }
+
+        .list-item-money input:last-of-type {
+            margin-right: 0px;
+        }
+
+.img-text {
+    position: absolute;
+    bottom: 2px;
+}
+
+#fileInput {
+    width: 0;
+    height: 0;
+}
+
+.link-create {
+    margin-top: 50px;
+    margin-left: 49px;
+}
+
+    .link-create input {
+        background-color: gold;
+        font-size: 25px;
+        border-radius: 5%;
+        padding: 6px;
+        cursor: pointer;
+    }
+
+.link-list {
+    float: right;
+    margin-right: 30px;
+}
+
+    .link-list a {
+        color: black;
+        font-size: 18px;
+        text-decoration: none;
+    }

@@ -1,0 +1,101 @@
+﻿/*--------------------SECTION---------------*/
+video {
+    width: 380px;
+    height: 390px;
+    object-fit: cover;
+}
+
+.box-section {
+    padding: 180px 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-section .heading {
+    font-size:40px;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 35px;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-sm {
+    font-size: 11px
+}
+
+.text-m {
+    font-size: 13px;
+}
+
+.text-large {
+    font-size: 67px
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.mb-30 {
+    margin-bottom: 30px;
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+.mt-45 {
+    margin-top: 45px;
+}
+
+.ml-40 {
+    margin-left: 40px
+}
+
+.text-spacing {
+    letter-spacing: 5px;
+}
+
+.btn {
+    border: 1px solid black;
+    padding: 15px 25px;
+}
+
+    .btn:hover {
+        background-color: var(--eco-color-primary);
+        color: white;
+    }
+/*---------------------------------------*/
+#carousel {
+    background-image: url("/Content/img/steak-wine.jpg");
+    width: 100%;
+    height: 800px;
+    background-size: cover;
+    position: relative;
+}
+
+    #carousel #sticker {
+        position: absolute;
+        bottom: -84px;
+        left: 240px;
+        transform: rotate(348deg);
+    }
+
+    #carousel #note {
+        height: 600px;
+        width: 560px;
+        position: absolute;
+        bottom: 0;
+        right: 90px;
+        display: flex;
+        color: white;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+        #carousel #note > div:not(:nth-child(2)) {
+            margin-bottom: 100px
+        }

@@ -1,0 +1,100 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.confirm-container {
+    height: 250px;
+    display: flex;
+    border-radius: 3px;
+    margin: 3px 3px 35px 3px;
+}
+
+.index-section {
+    border-radius: 5px;
+    margin-right: 5px;
+    background-color: rgba(255,255,255, .65);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    vertical-align: middle;
+}
+
+.index-separator {
+    border-color: lightgray;
+    border-width: 1px;
+    width: 80%;
+}
+
+.index-text {
+    font-size: 30px;
+}
+
+.index-number {
+    font-size: 50px;
+}
+
+.food-list-section {
+    background-color: rgba(255,255,255, .65);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    margin: 0px 5px 0px 0px;
+}
+
+.food-list {
+    display: flex;
+    margin: 3px;
+}
+
+.food-list-food {
+    margin: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.confirm-food-name {
+    font-size: 14px;
+}
+
+.confirm-food-img img {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+}
+
+.confirm-food-name {
+
+}
+
+.confirm-button {
+    
+}
+
+.confirm-button-image {
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+}
+
+.confirm-button-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0px 0px 0px 5px;
+    background-color: rgba(255,255,255,.65);
+    height: 250px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+#confirmInput {
+    width:0;
+    height:0;
+}

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SelfRestaurant" Class="dbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.TaiKhoan" Member="TaiKhoans">
+    <Type Name="TaiKhoan">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="role" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="TaiKhoan_NhanVien" Member="NhanViens" ThisKey="id" OtherKey="id" Type="NhanVien" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KhachHang" Member="KhachHangs">
+    <Type Name="KhachHang">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="DiemTichLuy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="KhachHang_HoaDon" Member="HoaDons" ThisKey="id" OtherKey="MaKhachHang" Type="HoaDon" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NhanVien" Member="NhanViens">
+    <Type Name="NhanVien">
+      <Column Name="id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="DienThoai" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="Luong" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="TaiKhoan_NhanVien" Member="TaiKhoan" ThisKey="id" OtherKey="id" Type="TaiKhoan" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HoaDon" Member="HoaDons">
+    <Type Name="HoaDon">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DanhSachMonAn" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="MaKhachHang" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ThanhTien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NgayDat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MaSoBan" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="isPayment" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DiemTichLuy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VAT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="isServed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="KhachHang_HoaDon" Member="KhachHang" ThisKey="MaKhachHang" OtherKey="id" Type="KhachHang" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MonAn" Member="MonAns">
+    <Type Name="MonAn">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenMon" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="GiaTien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MoTa" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="video" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Anh" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="SoLuongMon" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Calories" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

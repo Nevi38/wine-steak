@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thu ngân</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body class="cashier">
+    <nav>
+        <img class="logo" src="~/Content/img/logo-footer.png" />
+
+        <ul class="list-group-horizontal">
+            <li>
+                @Html.ActionLink("Payment", "Index", "Cashier", new { @id = "js-li-payment" })
+            </li>
+            <li>
+                @Html.ActionLink("Statistics", "Statistics", "Cashier", new { @id = "js-li-statistics" })
+            </li>
+            <li class="js-li">
+                @Html.ActionLink("Log out", "Logout", "Cashier")
+            </li>
+            <li class="js-li">
+                Hi, @ViewBag.user
+            </li>
+        </ul>
+    </nav>
+
+    <div id="content">
+        @RenderBody()
+    </div>
+    @Styles.Render("~/Content/css/general.css")
+</body>
+</html>

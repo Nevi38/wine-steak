@@ -1,0 +1,99 @@
+﻿@model wine_steak.Models.MonAn
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="foodDay">
+    <div class="foodDay__theme" style="background-image: url('/Content/img/@Model.Anh')">
+        <div class="foodDay__content">
+            <img src="~/Content/img/logo-footer.png" />
+            <div>
+                <p class="letter-spacing">@Model.GiaTien EUR</p>
+                <h2 class="letter-spacing">@Model.TenMon</h2>
+                <p class="description">@Model.MoTa</p>
+                <div>
+                    <button>LEARN MORE</button>
+                    <button> @Html.ActionLink(">", "Index", new { @currentFood = ((int)Session["nextFood"]) })</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="btn-play">
+            <span id="play-icon" class="material-symbols-outlined">
+                play_arrow
+            </span>
+
+            <span id="pause-icon" class="material-symbols-outlined d-none">
+                pause
+            </span>
+        </div>
+    </div>
+    <video id="video" class="opacity-0" src="~/Content/video/@Model.video"></video>
+</div>
+
+<script>
+    const content = document.getElementsByClassName('foodDay__content')[0]
+    const playButton = document.getElementById('btn-play')
+    const video = document.getElementById('video')
+    const playIcon = document.getElementById('play-icon')
+    const pauseIcon = document.getElementById('pause-icon')
+    let isPlay = false
+    let hiddenDuration
+
+    playButton.addEventListener("click", function () {
+        if (!isPlay) {
+            // Change status button
+            playIcon.classList.add('d-none')
+            pauseIcon.classList.remove('d-none')
+
+            video.classList.remove('opacity-0')
+            video.play()
+
+            hiddenDuration = setTimeout(function () {
+                playButton.classList.add('d-none')
+            }, 2000)
+
+            // Hidden content
+            content.classList.add('opacity-0')
+
+            isPlay = true
+        }
+    })
+
+    video.addEventListener("click", function () {
+        if (isPlay) {
+            clearTimeout(hiddenDuration)
+            playButton.classList.remove('d-none')
+
+            playIcon.classList.remove('d-none')
+            pauseIcon.classList.add('d-none')
+
+            video.classList.add('opacity-0')
+            video.pause()
+
+            // Show content
+            content.classList.remove('opacity-0')
+
+            isPlay = false
+        }
+    })
+
+    video.addEventListener("ended", function () {
+        playButton.classList.remove('d-none')
+
+        playIcon.classList.remove('d-none')
+        pauseIcon.classList.add('d-none')
+
+        video.classList.add('opacity-0')
+        video.pause()
+
+        // Show content
+        content.classList.remove('opacity-0')
+
+        isPlay = false
+    });
+</script>
+@Styles.Render("~/Content/css/foodDay.css")
+

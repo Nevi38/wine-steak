@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/Content/css/login.css" />
+</head>
+<body>
+    <div id="app">
+        @using (Html.BeginForm("Login", "Cashier", FormMethod.Post, new { @id = "wrap__form" }))
+        {
+            <h2 class="mt-2 mb-4 text-center">@ViewBag.message</h2>
+            <div class="d-flex justify-content-center"><img width="150" src="~/Content/img/logo-footer.png" /></div>
+            <h2 class="mt-2 mb-4 text-center">CASHIER LOGIN</h2>
+            <div class="mt-4">
+                <p class="label mb-2">Username</p>
+                <input name="username" class="input-group" type="text" placeholder="Enter your username" />
+            </div>
+            <div class="mt-4">
+                <p class="label mb-2">Password</p>
+                <input name="password" class="input-group" type="password" placeholder="Enter your password" />
+            </div>
+            <button type="submit" class="label mt-4">Login</button>
+        }
+    </div>
+</body>
+</html>

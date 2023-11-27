@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Diner.cshtml";
+}
+
+<style>
+    #diners {
+        height: calc(100vh - var(--eco-header));
+        width: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        transition: all 0.4s ease;
+    }
+
+    #diners #controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+        #diners #controls  span {
+            font-size: 30px;
+        }
+
+        #diners #controls span:hover {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+
+    #diners .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        border-radius: 50%;
+    }
+</style>
+
+<div id="diners">
+    <div id="controls">
+        <div id="prevFood" class="button">
+            <span class="text-white material-symbols-outlined">
+                chevron_left
+            </span>
+        </div>
+        <div id="nextFood"class="button">
+            <span class="text-white material-symbols-outlined">
+                chevron_right
+            </span>
+        </div>
+    </div>
+</div>
+
+<script>
+    const bgTheme = document.getElementById('diners')
+    const nextButton = document.getElementById('nextFood')
+    const prevButton = document.getElementById('prevFood')
+    const bannerFoods = [
+        '/Content/img/GaCuonBK.jpg',
+        '/Content/img/KFC50.jpg'
+    ]
+    let index = 0
+    let maxFoods = bannerFoods.length
+
+    // Set default is picture 1
+    bgTheme.style.backgroundImage = `url(${bannerFoods[index]})`
+
+    nextButton.addEventListener('click', function (e) {
+        index++;
+
+        if (index >= maxFoods) {
+            index = 0
+        }
+
+        bgTheme.style.backgroundImage = `url(${bannerFoods[index]})`
+    })
+
+    prevButton.addEventListener('click', function (e) {
+        index--;
+
+        if (index < 0) {
+            index = 0
+        }
+
+        bgTheme.style.backgroundImage = `url(${bannerFoods[index]})`
+    })
+
+
+</script>

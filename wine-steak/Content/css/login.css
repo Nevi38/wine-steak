@@ -1,0 +1,52 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Helvetica, sans-serif;
+}
+
+body {
+    height: 100vh;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+#app {
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+#wrap__form {
+    color: white;
+    width: 40%;
+}
+
+    #wrap__form .label {
+        font-size: 19px;
+    }
+
+    #wrap__form button {
+        background-color: #FAD02C;
+        color: black;
+        padding: 15px;
+        border: none;
+        width: 100%;
+    }
+
+        #wrap__form button:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+
+        #wrap__form input {
+            padding: 10px;
+            border-radius: 5px;
+        }
